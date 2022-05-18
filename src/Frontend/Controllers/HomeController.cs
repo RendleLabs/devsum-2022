@@ -1,15 +1,18 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Frontend.Models;
+using Ingredients.Protos;
 
 namespace Frontend.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly IngredientsService.IngredientsServiceClient _ingredients;
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IngredientsService.IngredientsServiceClient ingredients, ILogger<HomeController> logger)
     {
+        _ingredients = ingredients;
         _logger = logger;
     }
 
@@ -27,6 +30,17 @@ public class HomeController : Controller
         };
         var viewModel = new HomeViewModel(toppings, crusts);
         return View(viewModel);
+    }
+
+    private async Task<List<ToppingViewModel>> GetToppingsAsync()
+    {
+        var response = await _ingredients.GetToppingsAsync(new GetToppingsRequest());
+
+        var models = response.Toppings
+            .Select(t => new ToppingViewModel(t.Id, t.Name, Convert.ToDecimal(t.Price)))
+            .ToList();
+
+        return models;
     }
 
     public IActionResult Privacy()

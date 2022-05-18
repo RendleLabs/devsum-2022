@@ -1,7 +1,11 @@
+using Ingredients.Protos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddGrpcClient<IngredientsService.IngredientsServiceClient>();
 
 var app = builder.Build();
 
