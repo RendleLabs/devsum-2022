@@ -23,3 +23,6 @@ services:
 #     port: 5002
 - name: orders
   project: src/Orders/Orders.csproj
+  bindings:
+  - protocol: https
+    port: 5005
