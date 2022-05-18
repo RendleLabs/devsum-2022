@@ -1,6 +1,8 @@
-﻿using Grpc.Core;
+﻿using System.Security.Claims;
+using Grpc.Core;
 using Ingredients.Data;
 using Ingredients.Protos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ingredients.Services
 {
@@ -52,6 +54,10 @@ namespace Ingredients.Services
 
         public override async Task<DecrementToppingsResponse> DecrementToppings(DecrementToppingsRequest request, ServerCallContext context)
         {
+            var user = context.GetHttpContext()
+                .User.FindFirst(ClaimTypes.Name)?.Value;
+
+            _logger.LogInformation("DecrementStock triggered by {User}", user);
             var tasks = request.ToppingIds
                 .Select(id => _toppingData.DecrementStockAsync(id));
             await Task.WhenAll(tasks);

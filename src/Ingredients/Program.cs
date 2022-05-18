@@ -1,9 +1,25 @@
 
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
+using AuthHelp;
 using Ingredients.Data;
 using Ingredients.Services;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.ConfigureKestrel(k =>
+{
+    k.ConfigureHttpsDefaults(https =>
+    {
+        var serverCert = ServerCert.Get();
+        https.ServerCertificate = serverCert;
+        https.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+        https.ClientCertificateValidation = (cert, _, _) => cert.Issuer == serverCert.Issuer;
+    });
+});
 
 // Only for macOS development
 if (Environment.OSVersion.Platform == PlatformID.MacOSX)
@@ -22,7 +38,23 @@ builder.Services.AddGrpc();
 
 builder.Services.AddSingleton<IToppingData, ToppingData>();
 
+builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate(o =>
+    {
+        o.RevocationMode = X509RevocationMode.NoCheck;
+        o.AllowedCertificateTypes = CertificateTypes.SelfSigned;
+        o.Events = new CertificateAuthenticationEvents
+        {
+            OnCertificateValidated = DevelopmentModeCertificateHelper.Validate
+        };
+    });
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
+
+app.UseCertificateForwarding();
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<IngredientsImpl>();

@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Ingredients.Protos;
+using Microsoft.AspNetCore.Authorization;
 using Orders.Protos;
 using Orders.PubSub;
 
@@ -24,6 +25,7 @@ namespace Orders.Services
             _logger = logger;
         }
 
+        [Authorize]
         public override async Task<PlaceOrderResponse> PlaceOrder(PlaceOrderRequest request, ServerCallContext context)
         {
             var decrementToppingsRequest = new DecrementToppingsRequest
