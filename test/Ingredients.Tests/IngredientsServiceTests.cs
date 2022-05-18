@@ -29,6 +29,7 @@ public class IngredientsServiceTests : IClassFixture<IngredientsApplicationFacto
             t =>
             {
                 Assert.Equal("cheese", t.Id);
+                Assert.Equal(0.5d, t.Price);
             },
             t =>
             {

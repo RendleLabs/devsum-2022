@@ -31,7 +31,8 @@ namespace Ingredients.Services
                         {
                             Id = t.Id,
                             Name = t.Name,
-                            Price = t.Price
+                            OldPrice = t.Price,
+                            Price = Convert.ToDecimal(t.Price)
                         })
                     }
                 };
