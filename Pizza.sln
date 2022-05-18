@@ -1,29 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32505.426
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A02B311C-28E1-469F-8646-C76B459E074B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "src\Frontend\Frontend.csproj", "{84761F60-37B8-4949-947B-6204CE1EC62F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend", "src\Frontend\Frontend.csproj", "{84761F60-37B8-4949-947B-6204CE1EC62F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ingredients.Data", "src\Ingredients.Data\Ingredients.Data.csproj", "{2A613147-2A62-44D9-8296-5283C03B712F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ingredients.Data", "src\Ingredients.Data\Ingredients.Data.csproj", "{2A613147-2A62-44D9-8296-5283C03B712F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.PubSub", "src\Orders.PubSub\Orders.PubSub.csproj", "{5C1CB20B-599A-4EC2-90BE-F3C7D2B22DA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.PubSub", "src\Orders.PubSub\Orders.PubSub.csproj", "{5C1CB20B-599A-4EC2-90BE-F3C7D2B22DA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{21D49B5C-2B6C-4E62-B3EC-0E79909BF3F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcTestHelper", "test\GrpcTestHelper\GrpcTestHelper.csproj", "{CF0A8113-7381-44BD-A592-904D839F11C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcTestHelper", "test\GrpcTestHelper\GrpcTestHelper.csproj", "{CF0A8113-7381-44BD-A592-904D839F11C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ingredients", "src\Ingredients\Ingredients.csproj", "{CF68BF69-F29D-4C4B-98C2-EAC37AC678E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ingredients", "src\Ingredients\Ingredients.csproj", "{CF68BF69-F29D-4C4B-98C2-EAC37AC678E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{D8FC1410-35E0-40F5-9051-C7AC4355B562}"
+	ProjectSection(SolutionItems) = preProject
+		tye.yaml = tye.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{84761F60-37B8-4949-947B-6204CE1EC62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,11 +49,17 @@ Global
 		{CF68BF69-F29D-4C4B-98C2-EAC37AC678E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF68BF69-F29D-4C4B-98C2-EAC37AC678E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{84761F60-37B8-4949-947B-6204CE1EC62F} = {A02B311C-28E1-469F-8646-C76B459E074B}
 		{2A613147-2A62-44D9-8296-5283C03B712F} = {A02B311C-28E1-469F-8646-C76B459E074B}
 		{5C1CB20B-599A-4EC2-90BE-F3C7D2B22DA1} = {A02B311C-28E1-469F-8646-C76B459E074B}
 		{CF0A8113-7381-44BD-A592-904D839F11C9} = {21D49B5C-2B6C-4E62-B3EC-0E79909BF3F6}
 		{CF68BF69-F29D-4C4B-98C2-EAC37AC678E6} = {A02B311C-28E1-469F-8646-C76B459E074B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2825EACA-6A2C-4799-B936-552A2DB63527}
 	EndGlobalSection
 EndGlobal
