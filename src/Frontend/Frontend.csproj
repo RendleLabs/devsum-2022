@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\orders.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.20.1" />
     <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.46.0" />
     <PackageReference Include="Grpc.Tools" Version="2.46.1">
@@ -18,6 +22,7 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\ingredients.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\orders.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>
