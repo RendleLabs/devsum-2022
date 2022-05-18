@@ -16,13 +16,9 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var toppings = new List<ToppingViewModel>
-        {
-            new("cheese", "Cheese", 1m),
-            new("tomatosauce", "Tomato Sauce", 0.5m),
-        };
+        var toppings = await GetToppingsAsync();
         var crusts = new List<CrustViewModel>
         {
             new("thin9", "Thin", 9, 5m),
